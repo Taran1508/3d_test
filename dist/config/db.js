@@ -11,11 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const mongoURI = (_a = process.env.MONGO_URI) !== null && _a !== void 0 ? _a : "";
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect("mongodb+srv://taran1508:John1508@cluster1508.q0lfcwg.mongodb.net/test_db?retryWrites=true&w=majority&appName=Cluster1508");
+        yield mongoose_1.default.connect(mongoURI);
         console.log("MongoDB connected");
     }
     catch (err) {

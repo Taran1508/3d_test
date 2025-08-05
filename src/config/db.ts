@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const mongoURI: string = process.env.MONGO_URI ?? "";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://taran1508:John1508@cluster1508.q0lfcwg.mongodb.net/test_db?retryWrites=true&w=majority&appName=Cluster1508"
-    );
+    await mongoose.connect(mongoURI);
     console.log("MongoDB connected");
   } catch (err) {
     console.error(err);
