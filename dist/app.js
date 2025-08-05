@@ -41,12 +41,14 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const objectRoute_1 = __importStar(require("./routes/objectRoute"));
 const logger_1 = __importDefault(require("./middleware/logger"));
+const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(logger_1.default);
 app.use(express_1.default.urlencoded({ extended: true }));
+app.use("/fbx", express_1.default.static(path_1.default.join(__dirname, "../public/fbx")));
 app.get("/", (Request, Response) => {
     Response.status(200).send("Backend Working");
 });
